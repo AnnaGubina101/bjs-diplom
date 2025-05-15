@@ -25,5 +25,5 @@ userForm.registerFormCallback = data => {
         location.reload();
     }
 
-    ApiConnector.login(data, responseToRegister);
+    ApiConnector.register(data, responseToRegister);
 }
