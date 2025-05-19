@@ -1,7 +1,5 @@
 "use strict"
 
-const { response } = require("express");
-
 const logOutButton = new LogoutButton();
 logOutButton.action = () => {
     const responseToLogOut = response => {
@@ -12,8 +10,7 @@ logOutButton.action = () => {
     ApiConnector.logout(responseToLogOut)
 }
 
-
-currentUser = response => {
+const currentUser = response => {
     if(response.success) {
         ProfileWidget.showProfile(response.data)
     }
@@ -39,9 +36,9 @@ moneyManager.addMoneyCallback = data => {
     ApiConnector.addMoney(data, response => {
         if(response.success) {
             ProfileWidget.showProfile(response.data);
-            moneyManager.setMessage(true, message)
+            moneyManager.setMessage(true, "Пополнение счёта прошло успешно!")
         } else {
-            moneyManager.setMessage(false, console.error(masage));
+            moneyManager.setMessage(false, console.error("Произошла ошибка в пополнении счета"));
         }
     })
 }
@@ -50,9 +47,9 @@ moneyManager.conversionMoneyCallback = data => {
     ApiConnector.convertMoney(data, response => {
         if(response.success) {
             ProfileWidget.showProfile(response.data);
-            moneyManager.setMessage(true, message)
+            moneyManager.setMessage(true, "Конвертирование валюты прошло успешно!")
         } else {
-            moneyManager.setMessage(false, console.error(masage));
+            moneyManager.setMessage(false, console.error("Произошла ошибка в конвертировании валюты"));
         }
     })
 }
@@ -61,9 +58,9 @@ moneyManager.sendMoneyCallback = data => {
     ApiConnector.transferMoney(data, response => {
         if(response.success) {
             ProfileWidget.showProfile(response.data);
-            moneyManager.setMessage(true, message)
+            moneyManager.setMessage(true, "Перевод денежных средств пошла успешно!")
         } else {
-            moneyManager.setMessage(false, console.error(masage));
+            moneyManager.setMessage(false, console.error("Произошла ошибка в переводе денежных средств"));
         }
     })
 }
@@ -84,9 +81,9 @@ favoritesWidget.addUserCallback = data => {
         moneyManager.updateUsersList(response.data);
 
         if(response.success) {
-            moneyManager.setMessage(true, message)
+            moneyManager.setMessage(true, "Пользователь успешно добавлен в список избранных!")
         } else {
-            moneyManager.setMessage(false, console.error(masage));
+            moneyManager.setMessage(false, console.error("Произошла ошибка при добавлении в список избранных"));
         }
     })
 }
@@ -98,9 +95,9 @@ favoritesWidget.removeUserCallback = data => {
         moneyManager.updateUsersList(response.data);
 
         if(response.success) {
-            moneyManager.setMessage(true, message)
+            moneyManager.setMessage(true, "Пользователь успешно удален из списка избранных!")
         } else {
-            moneyManager.setMessage(false, console.error(masage));
+            moneyManager.setMessage(false, console.error("Произошла ошибка в удалении пользователя из списка избранных"));
         }
     })
 }
